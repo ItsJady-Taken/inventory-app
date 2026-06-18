@@ -1,0 +1,24 @@
+{
+  "name": "inventory-app",
+  "version": "1.0.0",
+  "description": "TOP project",
+  "homepage": "https://github.com/ItsJady-Taken/inventory-app#readme",
+  "bugs": {
+    "url": "https://github.com/ItsJady-Taken/inventory-app/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ItsJady-Taken/inventory-app.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "pg": "^8.21.0"
+  }
+}
