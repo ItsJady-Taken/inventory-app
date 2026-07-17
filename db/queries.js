@@ -23,15 +23,28 @@ async function getAllItems() {
   return rows;
 }
 
-async function insertItem(name, category_id) {
-  await pool.query("INSERT INTO items (name, category_id) VALUES ($1, $2)", [name, category_id]);
+// Add an item with more detail
+async function insertItem(name, brand, price, category_id) {
+  await pool.query(
+    "INSERT INTO items (name, brand, price, category_id) VALUES ($1, $2, $3, $4)",
+    [name, brand, price, category_id]
+  );
+}
+
+// Get all guitars for a specific category
+async function getItemsByCategory(categoryId) {
+  const { rows } = await pool.query(
+    "SELECT * FROM items WHERE category_id = $1",
+    [categoryId]
+  );
+  return rows;
 }
 
 async function deleteItem(id) {
   await pool.query("DELETE FROM items WHERE id = $1", [id]);
 }
 
-async function updateItem(id, name, category_id) {
+async function updateItem(id, name, brand, price, category_id) {
   await pool.query("UPDATE items SET name = $1, category_id = $2 WHERE id = $3", [name, category_id, id]);
 }
 

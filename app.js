@@ -11,7 +11,6 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes will go here
-
 app.use("/categories", categoryRouter);
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
