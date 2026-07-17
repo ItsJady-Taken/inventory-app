@@ -1,8 +1,8 @@
 const {Router} = require('express');
-const router = Router();
+const itemRouter = Router();
 const itemController = require('../controllers/itemControll');
 
-router.post('/new', itemController.postItemCreate);
-router.get('/new', itemController.getItemCreate);
+itemRouter.post('/new', itemController.postItemCreate);
+itemRouter.get('/new', itemController.getItemCreate);
 
-module.exports = router;
+module.exports = itemRouter;

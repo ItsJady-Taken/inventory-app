@@ -14,7 +14,8 @@ exports.postItemCreate = async (req, res) => {
 
 exports.getItemCreate = async (req, res) => {
     try {
-        const items = await db.getItemByCategory();
+        const categoryId = req.query.category_id; // Get the category ID from the query parameters
+        const items = await db.getItemsByCategory(categoryId);
         res.render("itemform", { items: items });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items' });

@@ -4,6 +4,7 @@ const app = express();
 const path = require('path');
 const { title } = require('process');
 const categoryRouter = require("./routes/categoryRouter");
+const itemRouter = require("./routes/itemRouter");
 
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
@@ -12,6 +13,8 @@ app.use(express.static(path.join(__dirname, "public")));
 
 // Routes will go here
 app.use("/categories", categoryRouter);
+app.use("/items", itemRouter);
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}`);

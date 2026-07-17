@@ -53,7 +53,7 @@ module.exports = {
     insertCategory,
     deleteCategory,
     updateCategory,
-  getAllItems,
+  getItemsByCategory,
   insertItem,
   deleteItem,
   updateItem
