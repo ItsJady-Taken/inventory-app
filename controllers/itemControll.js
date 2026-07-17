@@ -11,3 +11,12 @@ exports.postItemCreate = async (req, res) => {
         return;
     }
 }   
+
+exports.getItemCreate = async (req, res) => {
+    try {
+        const items = await db.getItemByCategory();
+        res.render("itemform", { items: items });
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch items' });
+    }
+}
