@@ -4,12 +4,12 @@
     <input type="text" name="name" placeholder="Model (e.g. Stratocaster)" required>
     <input type="number" name="price" placeholder="Price" step="0.01">
 
-    <select name="category_id">
-        <!-- <% categories.forEach(category=> { %>
-            <option value="<%= category.id %>">
-                <%= category.name %>
-            </option>
-            <% }); %> -->
+    <select name="category_id"> 
+        <% categories.forEach(category=> { %>
+                    <option value="<%= category.id %>">
+                        <%= category.name %>
+                    </option>
+                    <% }); %>
     </select>
 
     <button type="submit">Add Guitar</button>
