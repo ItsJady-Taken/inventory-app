@@ -12,6 +12,9 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, "public")));
 
 // Routes will go here
+app.get("/", (req, res) => {
+    res.redirect("/categories"); // Redirect to the category list page
+});
 app.use("/categories", categoryRouter);
 app.use("/items", itemRouter);
 

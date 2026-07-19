@@ -3,10 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/nav.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Inventory Categories</h1>
+    <%- include('partials/nav') %>
     
     <% if (categories.length===0) { %>
         <h3>Empty</h3>
