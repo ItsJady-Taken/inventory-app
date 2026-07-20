@@ -1,7 +1,163 @@
+@import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700&display=swap');
+
 .nav {
-    background-color: #f0f0f0;
-    padding: 10px;
     display: flex;
-    align-items: center;
     justify-content: space-between;
+    align-items: center;
+    background-color: #333;
+    padding: 1rem 2rem;
+    margin: 1rem;
+    border-radius: 8px;
+    /* Rounded corners */
+    color: white;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
+}
+
+.shop-title {
+    display: flex;
+    gap: 10px;
+    /* Space between words */
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* The "Brand" Word: Bold, Rock-and-Roll style */
+.first-word {
+    font-family: 'Bangers', cursive;
+    color: #ffcc00;
+    letter-spacing: 1px;
+    
+    /* Gibson Gold */
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* The "Utility" Word: Modern, clean, and professional */
+.second-word {
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff;
+    /* Crisp white */
+    font-weight: 400;
+    letter-spacing: 1px;
+    align-self: center;
+    /* Aligns it slightly differently if needed */
+}
+/* 
+.nav h1 {
+    margin: 0;
+    font-size: 1.5rem;
+} */
+
+.nav ul {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+    /* Space between links */
+    margin: 0;
+}
+.nav li {
+    display: inline-block;
+    /* Keeps them horizontal on desktop */
+}
+
+.nav a {
+    font-family: 'Montserrat', sans-serif;
+    /* Matching the second-word font */
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    font-weight: 500;
+    /* Makes it slightly cleaner to read */
+    text-transform: uppercase;
+    /* Optional: makes it look more like a menu */
+    font-size: 0.9rem;
+    display: inline-block;
+    margin: 5px 0;
+}
+
+.nav a {
+    color: white;
+    text-decoration: none;
+    text-align: center;
+    padding: 8px 12px;
+    border-radius: 5px;
+    /* Subtle radius for links */
+    transition: background-color 0.3s ease;
+    /* Smooth hover effect */
+}
+
+.nav a:hover {
+    background-color: #555;
+    /* Darker grey on hover */
+}
+/* --- Hide the checkbox --- */
+.nav-toggle {
+    display: none;
+}
+
+/* --- Hamburger Button (3-lines) --- */
+.nav-toggle-label {
+    display: none;
+    /* Hidden on desktop */
+    cursor: pointer;
+    padding: 10px;
+}
+
+.nav-toggle-label span,
+.nav-toggle-label span::before,
+.nav-toggle-label span::after {
+    display: block;
+    background: white;
+    height: 3px;
+    width: 25px;
+    position: relative;
+}
+
+.nav-toggle-label span::before {
+    content: '';
+    top: -8px;
+}
+
+.nav-toggle-label span::after {
+    content: '';
+    bottom: 5px;
+}
+
+/* --- Mobile Responsiveness --- */
+@media (max-width: 768px) {
+    .shop-title {
+        font-size: 1.5rem;
+    }
+
+    /* Shrink font for mobile */
+
+    .nav {
+        flex-wrap: wrap;
+    }
+
+    .nav-toggle-label {
+        display: block;
+    }
+
+    .nav ul {
+        display: none;
+        width: 100%;
+        /* flex-direction: column; */
+    }
+
+    .nav li {
+        display: block;
+        /* Forces each link to take its own line */
+    }
+
+    .nav a {
+        display: block;
+        text-align: left;
+        /* Makes the full area a clickable button */
+    }
+        /* Toggle visibility when checkbox is checked */
+        .nav-toggle:checked~ul {
+            display: flex;
+        }
 }

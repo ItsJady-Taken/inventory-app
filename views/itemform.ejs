@@ -6,10 +6,10 @@
 
     <select name="category_id"> 
         <% categories.forEach(category=> { %>
-                    <option value="<%= category.id %>">
-                        <%= category.name %>
-                    </option>
-                    <% }); %>
+            <option value="<%= category.id %>">
+                <%= category.name %>
+            </option>
+        <% }); %>
     </select>
 
     <button type="submit">Add Guitar</button>
