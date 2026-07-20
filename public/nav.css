@@ -1,14 +1,13 @@
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Montserrat:wght@400;700&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@700&family=Roboto:wght@400;500&display=swap');
 .nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #333;
+    background-color: #1d3557;
+    border-bottom: 4px solid #e63946;
+        /* Red "pinstripe" accent */
     padding: 1rem 2rem;
-    margin: 1rem;
-    border-radius: 8px;
-    /* Rounded corners */
     color: white;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.5);
 }
@@ -23,29 +22,22 @@
 
 /* The "Brand" Word: Bold, Rock-and-Roll style */
 .first-word {
-    font-family: 'Bangers', cursive;
-    color: #ffcc00;
-    letter-spacing: 1px;
-    
-    /* Gibson Gold */
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    font-family: 'Oswald', sans-serif;
+    color: #e63946;
+    /* Racing Red - high energy */
+    text-transform: uppercase;
+    letter-spacing: 2px;
 }
 
 /* The "Utility" Word: Modern, clean, and professional */
 .second-word {
-    font-family: 'Montserrat', sans-serif;
-    color: #ffffff;
-    /* Crisp white */
+    font-family: 'Roboto', sans-serif;
+    color: #f1faee;
+    /* Clean off-white */
     font-weight: 400;
     letter-spacing: 1px;
-    align-self: center;
-    /* Aligns it slightly differently if needed */
 }
-/* 
-.nav h1 {
-    margin: 0;
-    font-size: 1.5rem;
-} */
+
 
 .nav ul {
     display: flex;
@@ -60,7 +52,7 @@
 }
 
 .nav a {
-    font-family: 'Montserrat', sans-serif;
+    font-family: 'Roboto', sans-serif;
     /* Matching the second-word font */
     color: white;
     text-decoration: none;

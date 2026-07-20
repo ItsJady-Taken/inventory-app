@@ -1,0 +1,9 @@
+body {
+        background-color: #f8fafc;
+            /* Adding a subtle grid overlay */
+            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+            background-size: 30px 30px;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+            color: #1a202c;
+}
