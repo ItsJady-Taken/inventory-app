@@ -14,7 +14,6 @@ exports.postItemCreate = async (req, res) => {
 
 exports.getItemCreate = async (req, res) => {
     try {
-        
         const categories = await db.getAllCategories();
         res.render("itemform", { categories: categories });
     } catch (error) {

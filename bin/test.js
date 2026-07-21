@@ -2,7 +2,7 @@
 const db = require("../db/queries");
 
 async function runTest() {
-  await db.deleteCategory(1);
+  await db.insertCategory("Test Category");
   const categories = await db.getAllCategories();
   console.log(categories);
 }

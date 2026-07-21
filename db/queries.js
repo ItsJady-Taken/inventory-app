@@ -6,7 +6,7 @@ async function getAllCategories() {
   return rows;
 }
 
-async function insertCategory(name) {
+async function createCategory(name) {
   await pool.query("INSERT INTO categories (name) VALUES ($1)", [name]);
 }
 
