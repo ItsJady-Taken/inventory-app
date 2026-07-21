@@ -9,6 +9,14 @@
 </head>
 <body>
     <%- include('partials/nav') %>
+    <div class="search-container">
+        <form action="/items/search" method="GET" class="search-form">
+            <input type="text" name="query" placeholder="Search by make, model, or year..." class="search-input" required>
+            <button type="submit" class="search-btn">
+                <span>Search</span>
+            </button>
+        </form>
+    </div>
     
     <% if (categories.length===0) { %>
         <h3>Empty</h3>
