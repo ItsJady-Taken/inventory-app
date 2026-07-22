@@ -5,9 +5,10 @@ exports.postItemCreate = async (req, res) => {
     try {
         const { name, brand, price, category_id } = req.body;
         const newItem = await db.insertItem(name, brand, price, category_id);
-        res.redirect("/items"); // Redirect to the item list page after successful creation        
+        res.redirect("/categories"); // Redirect to the item list page after successful creation        
     } catch (error) {
-        res.status(500).json({ error: 'Failed to create item' });
+
+        res.status(500).json({ error: 'Failed to create item', details: error.message });
         return;
     }
 }   

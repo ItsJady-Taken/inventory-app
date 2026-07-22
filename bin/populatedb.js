@@ -2,15 +2,15 @@
 const { Client } = require("pg");
 
 const SQL = `
-CREATE TABLE categories (
+CREATE TABLE IF NOT EXISTS categories (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
   name VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE items (
+CREATE TABLE IF NOT EXISTS items (
   id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
-  name VARCHAR(255) NOT NULL, -- e.g., 'Stratocaster'
-  brand VARCHAR(255) NOT NULL, -- e.g., 'Fender'
+  name VARCHAR(255) NOT NULL, 
+  brand VARCHAR(255) NOT NULL,
   price DECIMAL(10, 2),
   category_id INTEGER REFERENCES categories(id)
 );

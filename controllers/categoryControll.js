@@ -32,3 +32,13 @@ exports.getCategoryForm = async (req, res) => {
         res.status(500).json({ error: 'Failed to fetch category form' });
     }
 }
+
+exports.getCategoryById = async (req, res) => {
+    try {
+        const categoryId = req.params.id;
+        const items = await db.getItemsByCategory(categoryId);
+        res.render("itemList", { items: items }); // Render the item list view with the fetched items
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to fetch items for the category' });
+    }
+}

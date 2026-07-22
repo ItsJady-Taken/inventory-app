@@ -7,7 +7,8 @@ async function getAllCategories() {
 }
 
 async function createCategory(name) {
-  await pool.query("INSERT INTO categories (name) VALUES ($1)", [name]);
+  const newCategory = await pool.query("INSERT INTO categories (name) VALUES ($1) RETURNING *", [name]);
+  return newCategory.rows[0];
 }
 
 async function deleteCategory(id) {
@@ -31,7 +32,7 @@ async function insertItem(name, brand, price, category_id) {
   );
 }
 
-// Get all guitars for a specific category
+// Get all items for a specific category
 async function getItemsByCategory(categoryId) {
   const { rows } = await pool.query(
     "SELECT * FROM items WHERE category_id = $1",
@@ -50,7 +51,7 @@ async function updateItem(id, name, brand, price, category_id) {
 
 module.exports = {
     getAllCategories,
-    insertCategory,
+    createCategory,
     deleteCategory,
     updateCategory,
   getItemsByCategory,
