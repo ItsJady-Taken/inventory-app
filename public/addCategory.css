@@ -1,0 +1,161 @@
+/* Ensure 600 is loaded if you want to use it */
+@import url('https://fonts.googleapis.com/css2?family=Oswald:wght@600;700&family=Roboto:wght@400;500;600&display=swap');
+/* --- Category Horizontal Navigation --- */
+.category-nav-container {
+    position: relative;
+    width: 100%;
+    max-width: 1200px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Hide the checkbox */
+.category-toggle {
+    display: none;
+}
+
+/* Horizontal Unordered List */
+.category-list {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* Light gray links with rounded edges and comfortable padding */
+.category-link,
+.category-add-btn {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #1f1f1f;
+    
+    /* Light gray text */
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 600;
+    -webkit-font-smoothing: antialiased;
+    /* Forces smooth Mac/iOS rendering */
+    -moz-osx-font-smoothing: grayscale;
+    /* Forces smooth Firefox rendering */
+    padding: 8px 14px;
+    /* Small but not too small padding */
+    border-radius: 6px;
+    /* Rounded corners */
+    border: 1px solid rgba(0, 0, 0, 0.5  );
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+/* Hover effects */
+.category-link:hover,
+.category-add-btn:hover {
+    /* background-color: rgba(117, 117, 117, 0.15); */
+    color: #424242;
+    border-color: #e63946;
+    /* Racing red accent on hover */
+}
+
+.category-add-btn {
+    color: #424242;
+    font-weight: 600;
+    /* Make the add button stand out slightly with red */
+    border-color: rgba(0, 0, 0, 0.5);
+}
+
+/* --- Pop-up Modal Form Styling --- */
+.category-modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(15, 23, 42, 0.8);
+    /* Dark tech overlay */
+    backdrop-filter: blur(5px);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+/* Reveal modal when checkbox is checked */
+.category-toggle:checked~.category-modal {
+    display: flex;
+}
+
+.modal-content {
+    background: #1e293b;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 25px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.modal-header h3 {
+    margin: 0;
+    font-family: 'Oswald', sans-serif;
+    color: #f1faee;
+    letter-spacing: 1px;
+}
+
+.close-btn {
+    font-size: 1.5rem;
+    color: #94a3b8;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #e63946;
+}
+
+.category-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.category-input {
+    background: rgba(15, 23, 42, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 12px;
+    border-radius: 8px;
+    color: #f2f2f2;
+    font-family: 'Roboto', sans-serif;
+    outline: none;
+}
+
+.category-input:focus {
+    border-color: #e63946;
+}
+
+.submit-category-btn {
+    background-color: #e63946;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.submit-category-btn:hover {
+    background-color: #d90429;
+}

@@ -3,24 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/addCategory.css">
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/style.css">
     <title>Document</title>
 </head>
 <body>
     <%- include('partials/nav') %>
-    <div class="search-container">
-        <form action="/items/search" method="GET" class="search-form">
-            <input type="text" name="query" placeholder="Search by make, model, or year..." class="search-input" required>
-            <button type="submit" class="search-btn">
-                <span>Search</span>
-            </button>
-        </form>
-        <div>
-            <a href="/categories/new" class="search-btn">Add Category</a>
-        </div>
-    </div>
-    
+    <%- include('partials/searchBar') %>
+    <%- include('partials/addCategory', { categories: categories }) %>
+
     <% if (categories.length===0) { %>
         <h3>Empty</h3>
         <% } else { %>

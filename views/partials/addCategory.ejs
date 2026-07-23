@@ -1,0 +1,39 @@
+<!-- views/partials/categoryNav.ejs -->
+<div class="category-nav-container">
+    <!-- Hidden Checkbox to control the popup form state -->
+    <input type="checkbox" id="category-toggle" class="category-toggle">
+
+    <ul class="category-list">
+         <!-- The "+ Add Category" button/link -->
+                        <li>
+                            <label for="category-toggle" class="category-add-btn">
+                                + New Category
+                            </label>
+                        </li>
+        <!-- Existing Categories Displayed Horizontally -->
+        <% if (locals.categories && categories.length> 0) { %>
+            <% categories.forEach(category=> { %>
+                <li>
+                    <a href="/categories/<%= category.id %>" class="category-link">
+                        <%= category.name %>
+                    </a>
+                </li>
+                <% }) %>
+                    <% } %>
+                 
+    </ul>
+
+    <!-- Pop-up Form Modal -->
+    <div class="category-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>New Vehicle Category</h3>
+                <label for="category-toggle" class="close-btn">&times;</label>
+            </div>
+            <form action="/categories/new" method="POST" class="category-form">
+                <input type="text" name="name" placeholder="e.g., Sports, SUV, Sedan" class="category-input" required>
+                <button type="submit" class="submit-category-btn">Save Category</button>
+            </form>
+        </div>
+    </div>
+</div>
