@@ -3,6 +3,7 @@ const db = require('../db/queries');
 exports.getCategoryCreate = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
+        const items = await db.getAllItems();
         res.render("categoryList", { categories: categories }); // Render the category list view with the fetched categories
         
     }   catch (error) {
@@ -25,19 +26,20 @@ exports.postCategoryCreate = async (req, res) => {
     }
 }
 
-exports.getCategoryForm = async (req, res) => {
-    try {
-        res.render("categoryForm"); // Render the category creation form view
-    } catch (error) {
-        res.status(500).json({ error: 'Failed to fetch category form' });
-    }
-}
+// exports.getCategoryForm = async (req, res) => {
+//     try {
+//         res.render("categoryForm"); // Render the category creation form view
+//     } catch (error) {
+//         res.status(500).json({ error: 'Failed to fetch category form' });
+//     }
+// }
 
 exports.getCategoryById = async (req, res) => {
     try {
         const categoryId = req.params.id;
         const items = await db.getItemsByCategory(categoryId);
-        res.render("itemList", { items: items }); // Render the item list view with the fetched items
+        const categories = await db.getAllCategories();
+        res.render("itemList", { items: items, categories: categories }); // Render the item list view with the fetched items
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items for the category' });
     }

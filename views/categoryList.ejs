@@ -6,23 +6,23 @@
     <link rel="stylesheet" href="/addCategory.css">
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/style.css">
-    <title>Document</title>
+    <title>Space Wheels</title>
 </head>
-<body>
-    <%- include('partials/nav') %>
-    <%- include('partials/searchBar') %>
-    <%- include('partials/addCategory', { categories: categories }) %>
+    <body>
+        <%- include('partials/nav') %>
+        <%- include('partials/searchBar') %>
+        <%- include('partials/addCategory', { categories: categories }) %>
 
-    <% if (categories.length===0) { %>
-        <h3>Empty</h3>
-        <% } else { %>
-            <ul>
-                <% categories.forEach(category=> { %>
-                    <li>
-                        <%= category.name %>
-                    </li>
-                    <% }); %>
-            </ul>
-            <% } %>
-</body>
+        <% if (categories.length===0) { %>
+            <h3>Empty</h3>
+            <% } else { %>
+                <ul>
+                    <% categories.forEach(category=> { %>
+                        <li>
+                            <%= category.name %>
+                        </li>
+                        <% }); %>
+                </ul>
+                <% } %>
+    </body>
 </html>
