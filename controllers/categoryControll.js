@@ -39,7 +39,8 @@ exports.getCategoryById = async (req, res) => {
         const categoryId = req.params.id;
         const items = await db.getItemsByCategory(categoryId);
         const categories = await db.getAllCategories();
-        res.render("itemList", { items: items, categories: categories }); // Render the item list view with the fetched items
+        const category = categories.find(cat => cat.id === parseInt(categoryId));
+        res.render("itemList", { items: items, category: category, categories: categories }); // Render the item list view with the fetched items
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items for the category' });
     }
