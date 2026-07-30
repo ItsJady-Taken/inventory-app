@@ -14,25 +14,15 @@ exports.getCategoryCreate = async (req, res) => {
 
 exports.postCategoryCreate = async (req, res) => {
     try {
-        const { name } = req.body;
+        const { name } = req.body;  
          await db.createCategory(name);
         res.redirect("/categories"); // Redirect to the category list page after successful creation        
     } catch (error) {
         const { name } = req.body;
-        console.error(`Error creating category ${name}:`, error);
         res.status(500).json({ error: `Failed to create category ${name}`, details: error.message });
-        
         return;
     }
 }
-
-// exports.getCategoryForm = async (req, res) => {
-//     try {
-//         res.render("categoryForm"); // Render the category creation form view
-//     } catch (error) {
-//         res.status(500).json({ error: 'Failed to fetch category form' });
-//     }
-// }
 
 exports.getCategoryById = async (req, res) => {
     try {
@@ -43,5 +33,15 @@ exports.getCategoryById = async (req, res) => {
         res.render("itemList", { items: items, category: category, categories: categories }); // Render the item list view with the fetched items
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items for the category' });
+    }
+}
+
+exports.deleteCategory = async (req, res) => {
+    try {
+        const categoryId = req.params.id;
+        await db.deleteCategory(categoryId);
+        res.redirect("/categories"); // Redirect to the category list page after successful deletion
+    } catch (error) {
+        res.status(500).json({ error: 'Failed to delete category' });
     }
 }

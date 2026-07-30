@@ -6,5 +6,5 @@ categoryRouter.get("/", categoryController.getCategoryCreate);
 // categoryRouter.get("/new", categoryController.getCategoryForm);
 categoryRouter.post("/new", categoryController.postCategoryCreate);
 categoryRouter.get("/:id", categoryController.getCategoryById);
-
+categoryRouter.post("/:id", categoryController.deleteCategory);
 module.exports = categoryRouter;
