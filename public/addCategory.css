@@ -26,9 +26,26 @@
     margin: 0;
 }
 
-/* Light gray links with rounded edges and comfortable padding */
-.category-link,
 .category-add-btn {
+    display: inline-block;
+    background-color: rgba(255, 255, 255, 0.05);
+    color: #1f1f1f;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.25rem;
+    font-weight: 900;
+    -webkit-font-smoothing: antialiased; /* Forces smooth Mac/iOS rendering */
+    -moz-osx-font-smoothing: grayscale; /* Forces smooth Firefox rendering */
+    padding: 6px 12px; /* Small but not too small padding */
+    border-radius: 100%; /* Rounded corners */
+    border: 1px solid rgba(0, 0, 0, 0.5);
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+
+/* Light gray links with rounded edges and comfortable padding */
+.category-link {
     display: inline-block;
     background-color: rgba(255, 255, 255, 0.05);
     color: #1f1f1f;

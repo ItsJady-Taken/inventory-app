@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="/addCategory.css">
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/addItem.css">
     <title>Document</title>
 </head>
 <body>
@@ -21,6 +22,8 @@
                     <h3 class="category-title">
                         <%= category.name %>
                     </h3>
+
+                    <%- include('partials/addItem', { category: category }) %>
              
                     <!-- Form to Delete the Entire Category -->
                     <form action="/categories/<%= category.id %>?_method=DELETE" method="POST" class="delete-form"

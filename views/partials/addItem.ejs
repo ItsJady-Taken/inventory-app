@@ -1,0 +1,48 @@
+<!-- views/partials/addItemModal.ejs -->
+<div class="add-item-container">
+    <!-- Hidden Checkbox to control the popup form state -->
+    <input type="checkbox" id="item-toggle" class="item-toggle">
+
+    <!-- The "+ Add Vehicle" Button -->
+    <label for="item-toggle" class="item-add-trigger-btn">
+        +
+    </label>
+
+    <!-- Pop-up Form Modal -->
+    <div class="item-modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Add New Vehicle</h3>
+                <label for="item-toggle" class="close-btn">&times;</label>
+            </div>
+
+            <!-- Form pointing to your item creation route, including the category id if needed -->
+            <form action="/items" method="POST" class="item-form">
+                <!-- If you need to tie it to the current category automatically -->
+                <% if (locals.category && category.id) { %>
+                    <input type="hidden" name="category_id" value="<%= category.id %>">
+                    <% } %>
+
+                        <div class="form-group">
+                            <label for="name">Vehicle Name / Model</label>
+                            <input type="text" id="name" name="name" placeholder="e.g., Nissan GT-R"
+                                class="category-input" required>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="image_url">Image URL</label>
+                            <input type="url" id="image_url" name="image_url" placeholder="https://example.com/car.jpg"
+                                class="category-input">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea id="description" name="description" placeholder="Twin-turbo V6, AWD..."
+                                class="category-input item-textarea" rows="3"></textarea>
+                        </div>
+
+                        <button type="submit" class="submit-item-btn">Save Vehicle</button>
+            </form>
+        </div>
+    </div>
+</div>
