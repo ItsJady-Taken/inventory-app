@@ -32,7 +32,6 @@ const carApiService = {
     // Helper method to build authorized headers
     async getAuthHeaders() {
         const token = await this.getBearerToken();
-        console.log("Using token:", token ? "Loaded" : "MISSING!");
         return {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/json'

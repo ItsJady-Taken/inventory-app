@@ -21,8 +21,9 @@ app.use("/items", itemRouter);
 // Express endpoint to test the CarAPI connection
 app.get('/api/test-carapi', async (req, res) => {
   try {
-    const data = await CarApiService.getMakes();
-    res.json({ success: true, data });
+    const datas = await CarApiService.getMakes();
+    console.log(datas.data[0]); // Log the fetched data to the console
+    res.json({ success: true, datas });
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }

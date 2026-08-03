@@ -11,9 +11,9 @@
 .category-header {
     display: flex;
     justify-content: flex-start;
-    gap: 10px;
+    gap: 15px;
     align-items: center;
-    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+    border-top: #3b3b3b 1px solid;
     padding-bottom: 1rem;
     margin-bottom: 2rem;
 }

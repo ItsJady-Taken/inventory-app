@@ -22,18 +22,31 @@
                 <% if (locals.category && category.id) { %>
                     <input type="hidden" name="category_id" value="<%= category.id %>">
                     <% } %>
-
+                        <!-- Brand / Category Dropdown -->
+                        <div class="form-group">
+                            <label for="brand">Car Brand</label>
+                            <select id="brand" name="category_id" class="category-input" required>
+                                <option value="" disabled selected>Select a brand...</option>
+                                <% if (locals.allBrands && allBrands.length > 0) { %>
+                                    <% allBrands.forEach(brand => { %>
+                                        <option value="<%= brand %>">
+                                            <%= brand %>
+                                        </option>
+                                    <% }); %>
+                                <% } %>
+                            </select>
+                        </div>
+                        
+<!-- 
                         <div class="form-group">
                             <label for="name">Vehicle Name / Model</label>
                             <input type="text" id="name" name="name" placeholder="e.g., Nissan GT-R"
                                 class="category-input" required>
                         </div>
 
-                        <div class="form-group">
-                            <label for="image_url">Image URL</label>
-                            <input type="url" id="image_url" name="image_url" placeholder="https://example.com/car.jpg"
-                                class="category-input">
-                        </div>
+                                class="category-input" required> -->
+                        <!-- </div> -->
+
 
                         <div class="form-group">
                             <label for="description">Description</label>

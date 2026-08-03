@@ -23,7 +23,7 @@
                         <%= category.name %>
                     </h3>
 
-                    <%- include('partials/addItem', { category: category }) %>
+                    <%- include('partials/addItem', { category: category, allBrands: allBrands }) %>
              
                     <!-- Form to Delete the Entire Category -->
                     <form action="/categories/<%= category.id %>?_method=DELETE" method="POST" class="delete-form"
