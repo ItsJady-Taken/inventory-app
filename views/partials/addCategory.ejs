@@ -5,11 +5,11 @@
 
     <ul class="category-list">
          <!-- The "+ Add Category" button/link -->
-                        <li>
-                            <label for="category-toggle" class="category-add-btn">
-                                +
-                            </label>
-                        </li>
+        <li>
+            <label for="category-toggle" class="category-add-btn">
+                +
+            </label>
+        </li>
         <!-- Existing Categories Displayed Horizontally -->
         <% if (locals.categories && categories.length> 0) { %>
             <% categories.forEach(category=> { %>
@@ -18,8 +18,8 @@
                         <%= category.name %>
                     </a>
                 </li>
-                <% }) %>
-                    <% } %>
+            <% }) %>
+        <% } %>
                  
     </ul>
 

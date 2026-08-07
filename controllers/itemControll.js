@@ -16,7 +16,7 @@ exports.postItemCreate = async (req, res) => {
 exports.getItemCreate = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
-        res.render("itemform", { categories: categories });
+        res.render("itemList", { categories: categories });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items' });
     }

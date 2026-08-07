@@ -17,14 +17,14 @@
             </div>
 
             <!-- Form pointing to your item creation route, including the category id if needed -->
-            <form action="/items" method="POST" class="item-form">
+            <form action="/items/new" method="GET" class="item-form">
                 <!-- If you need to tie it to the current category automatically -->
                 <% if (locals.category && category.id) { %>
                     <input type="hidden" name="category_id" value="<%= category.id %>">
                     <% } %>
                         <!-- Brand / Category Dropdown -->
                         <div class="form-group">
-                            <label for="brand">Car Brand</label>
+                            <label for="brand">Brand Name</label>
                             <select id="brand" name="category_id" class="category-input" required>
                                 <option value="" disabled selected>Select a brand...</option>
                                 <% if (locals.allBrands && allBrands.length > 0) { %>
@@ -37,24 +37,44 @@
                             </select>
                         </div>
                         
-<!-- 
-                        <div class="form-group">
-                            <label for="name">Vehicle Name / Model</label>
-                            <input type="text" id="name" name="name" placeholder="e.g., Nissan GT-R"
-                                class="category-input" required>
-                        </div>
-
-                                class="category-input" required> -->
-                        <!-- </div> -->
+                        <!-- Search Input to filter the dropdown -->
+                         <div class="form-group">
+                            <label for="brand-search">Model (Optional)</label>
+                             <input type="text" id="brand-search" placeholder="e.g., Civic, Accord" class="category-input brand-search-input"
+                            autocomplete="off">
+                         </div>
 
 
-                        <div class="form-group">
-                            <label for="description">Description</label>
-                            <textarea id="description" name="description" placeholder="Twin-turbo V6, AWD..."
-                                class="category-input item-textarea" rows="3"></textarea>
-                        </div>
+                        <button type="submit" class="submit-item-btn">Search</button>
 
-                        <button type="submit" class="submit-item-btn">Save Vehicle</button>
+                        <!-- Inline script to make the search filter work instantly -->
+                        <script>
+                            const brandSearch = document.getElementById('brand-search');
+                            const brandSelect = document.getElementById('brand-select');
+                            const options = Array.from(brandSelect.options);
+
+                            brandSearch.addEventListener('input', (e) => {
+                                const query = e.target.value.toLowerCase();
+
+                                // Clear current options from dropdown
+                                brandSelect.innerHTML = '';
+
+                                // Filter options based on what is typed
+                                const matchedOptions = options.filter(option => {
+                                    // Keep the default "Select a brand..." placeholder always available
+                                    if (option.value === "") return true;
+                                    return option.text.toLowerCase().includes(query);
+                                });
+
+                                // Re-append matched options back into the select element
+                                matchedOptions.forEach(option => brandSelect.appendChild(option));
+
+                                // Automatically select the first valid match if typing narrows it down heavily
+                                if (matchedOptions.length === 2) {
+                                    brandSelect.selectedIndex = 1;
+                                }
+                            });
+                        </script>
             </form>
         </div>
     </div>
