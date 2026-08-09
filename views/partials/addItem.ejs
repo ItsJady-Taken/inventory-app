@@ -25,7 +25,7 @@
                         <!-- Brand / Category Dropdown -->
                         <div class="form-group">
                             <label for="brand">Brand Name</label>
-                            <select id="brand" name="category_id" class="category-input" required>
+                            <select id="brand" name="brand" class="category-input" required>
                                 <option value="" disabled selected>Select a brand...</option>
                                 <% if (locals.allBrands && allBrands.length > 0) { %>
                                     <% allBrands.forEach(brand => { %>
@@ -40,7 +40,7 @@
                         <!-- Search Input to filter the dropdown -->
                          <div class="form-group">
                             <label for="brand-search">Model (Optional)</label>
-                             <input type="text" id="brand-search" placeholder="e.g., Civic, Accord" class="category-input brand-search-input"
+                             <input type="text" name="" id="brand-search" placeholder="e.g., Civic, Accord" class="category-input brand-search-input"
                             autocomplete="off">
                          </div>
 

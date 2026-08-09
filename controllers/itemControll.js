@@ -1,5 +1,5 @@
 const db = require('../db/queries');
-
+const CarApiService = require("../services/carApi");
 
 exports.postItemCreate = async (req, res) => {
     try {
@@ -16,7 +16,13 @@ exports.postItemCreate = async (req, res) => {
 exports.getItemCreate = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
-        res.render("itemList", { categories: categories });
+        const brand = req.query.brand; // Get the brand from the query parameters
+       
+        const models = await CarApiService.getModels(brand); // Fetch car makes from the CarAPI
+        const allModels = models.data.map(item => item.name); // Extract the names of the car makes
+        console.log(allModels[1]); // Log the brand to the console for debugging
+
+        res.render("itemList", { categories: categories, brand: brand });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items' });
     }
