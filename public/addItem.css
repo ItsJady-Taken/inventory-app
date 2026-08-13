@@ -117,3 +117,34 @@ select.category-input option {
     /* Separates the search box from the dropdown select */
     font-size: 0.9rem !important;
 }
+
+/* --- Back Link Styling --- */
+.back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #94a3b8;
+    /* Muted gray-blue */
+    text-decoration: none;
+    margin-bottom: 1.5rem;
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.back-arrow {
+    transition: transform 0.2s ease;
+}
+
+.back-link:hover {
+    color: #e63946;
+    /* Clean white */
+}
+
+/* Subtle motion effect: arrow nudges backward on hover */
+.back-link:hover .back-arrow {
+    transform: translateX(-4px);
+    color: #e63946;
+    /* Racing red accent on the arrow */
+}

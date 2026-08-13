@@ -1,0 +1,157 @@
+/* --- Inventory Page Layout --- */
+.inventory-container {
+    width: 100%;
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+/* Header & Search grouping */
+.inventory-header {
+    display: flex;
+    flex-direction: column;
+    /* align-items: center; */
+    margin-bottom: 2.5rem;
+    text-align: center;
+}
+
+.inventory-title {
+    font-family: 'Oswald', sans-serif;
+    font-size: 2.5rem;
+    color: #3b3b3b;
+    margin: 0 0 1rem 0;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}
+
+/* --- Items Grid --- */
+.items-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 25px;
+}
+
+/* --- Clickable Card Styling --- */
+.item-card-link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+}
+
+.item-card {
+    background: rgba(30, 41, 59, 0.7);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.item-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(230, 57, 70, 0.6);
+    /* Racing red border glow */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.4);
+}
+
+/* Card Image */
+.item-image {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+}
+
+.item-image-placeholder {
+    width: 100%;
+    height: 180px;
+    background: rgba(15, 23, 42, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #64748b;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Card Info */
+.item-info {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+
+.item-name {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1.35rem;
+    color: #f1faee;
+    margin: 0 0 8px 0;
+    letter-spacing: 0.5px;
+}
+
+.item-desc {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+    color: #94a3b8;
+    margin: 0 0 20px 0;
+    line-height: 1.4;
+    flex: 1;
+    /* Pushes footer down evenly */
+}
+
+/* Card Footer (Badge & Action Button) */
+.card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid rgba(255, 255, 255, 0.08);
+    padding-top: 12px;
+    margin-top: auto;
+}
+
+.item-badge {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.05);
+    color: #cbd5e1;
+    padding: 4px 10px;
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Secondary Button inside card (Add to Category) */
+.card-action-btn {
+    background-color: rgba(30, 144, 255, 0.15);
+    color: #60a5fa;
+    border: 1px solid rgba(96, 165, 250, 0.3);
+    padding: 6px 12px;
+    border-radius: 6px;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.85rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.card-action-btn:hover {
+    background-color: #3b82f6;
+    color: white;
+    border-color: #3b82f6;
+}
+
+.no-items-container {
+    grid-column: 1 / -1;
+    text-align: center;
+    padding: 4rem 0;
+}
+
+.no-items-msg {
+    color: #94a3b8;
+    font-family: 'Roboto', sans-serif;
+    font-size: 1.1rem;
+}

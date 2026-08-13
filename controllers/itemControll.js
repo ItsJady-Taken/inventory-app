@@ -16,13 +16,15 @@ exports.postItemCreate = async (req, res) => {
 exports.getItemCreate = async (req, res) => {
     try {
         const categories = await db.getAllCategories();
+        const categoryId = req.query.category_id; // Get the category_id from the query parameters
         const brand = req.query.brand; // Get the brand from the query parameters
        
-        const models = await CarApiService.getModels(brand); // Fetch car makes from the CarAPI
-        const allModels = models.data.map(item => item.name); // Extract the names of the car makes
-        console.log(allModels[1]); // Log the brand to the console for debugging
+        const modelData = await CarApiService.getModels(brand); // Fetch car makes from the CarAPI
+        const models = modelData.data.map(item => item.name); // Extract the names of the car makes
+        const trimsData = await CarApiService.getTrims(brand); // Fetch trims for the first model
 
-        res.render("itemList", { categories: categories, brand: brand });
+        console.log("All Models:", trimsData); // Log the car makes to the console modelsebugging
+        res.render("itemList", { categoryId: categoryId, categories: categories, brand: brand, models: models, trims: trimsData.data });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items' });
     }

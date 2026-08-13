@@ -6,12 +6,89 @@
     <link rel="stylesheet" href="/addItem.css">
     <link rel="stylesheet" href="/nav.css">
     <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="/itemList.css">
     <title>Document</title>
 </head>
 <body>
-    <h2>Item List</h2>
+   
     <%- include('partials/nav') %>
-    <%- include('partials/searchBar') %>
+   
+    <!-- views/itemList.ejs -->
+    <div class="inventory-container">
+    
+        <!-- Header Section with Title and Search Bar -->
+        <div class="inventory-header">
+            <a href="/categories/<%= categoryId %>" class="back-link">
+                <span class="back-arrow">&larr;</span>Back to Category
+            </a>
+            <h2 class="inventory-title"><%= brand %></h2>
+    
+            <!-- Search Bar Partial or Integrated Form -->
+            <div class="search-container">
+                <form action="/items/search" method="GET" class="search-form">
+                    <input type="text" name="query" placeholder="Search by make, model, or year..." class="search-input"
+                        value="<%= locals.searchQuery || '' %>" required>
+                    <button type="submit" class="search-btn">
+                        <span>Search</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    
+        <!-- Items Grid Section -->
+        <div class="items-grid">
+            <% if (locals.trims && trims.length> 0) { %>
+                <% trims.forEach(trim=> { %>
+                    <!-- Clickable Card Wrapper (Links to detail page) -->
+                    <a href="/items/" class="item-card-link">
+                        <div class="item-card">
+    
+                            <!-- Item Image -->
+                            <% if (trim.image_url) { %>
+                                <img src="" alt="" class="item-image">
+                                <% } else { %>
+                                    <div class="item-image-placeholder">No Image Available</div>
+                                    <% } %>
+    
+                                        <!-- Item Info -->
+                                        <div class="item-info">
+                                            <h3 class="item-name">
+                                                <%= trim.make %> <%= trim.model %> <%= trim.year %>
+                                            </h3>
+                                            <p class="item-desc">
+                                                <%= trim.description ? trim.description.substring(0, 80) + '...'
+                                                    : 'No description provided.' %>
+                                            </p>
+    
+                                            <!-- Action Footer Inside Card -->
+                                            <div class="card-footer">
+                                                <span class="item-badge">
+                                                    <%= trim.category_name || 'Unassigned' %>
+                                                </span>
+    
+                                                <!-- Second Button: Add/Assign to Category (Stops card click propagation) -->
+                                                <form action="/items" method="POST"
+                                                    onclick="event.stopPropagation();">
+                                                    <button type="submit" class="card-action-btn"
+                                                        title="Assign or change category">
+                                                        + Category
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </div>
+    
+                        </div>
+                    </a>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="no-items-container">
+                                <p class="no-items-msg">No vehicles found in the inventory.</p>
+                            </div>
+                        <% } %>
+        </div>
+    
+    </div>
+   
 
 
 </body>
