@@ -1,0 +1,84 @@
+<!-- Model Dropdown -->
+<div class="filter-group">
+    <select id="filter-model" class="filter-input">
+        <option value="">All Models</option>
+        <% models.forEach(model => {
+            %>
+            <option value="<%= model.toLowerCase() %>">
+                <%= model %>
+            </option>
+            <% }) %>
+    </select>
+    <!-- Trim Dropdown -->
+     <div class="filter-group">
+            <select id="filter-trim" class="filter-input">
+                <option value="">All Trims</option>
+                <% trims.forEach(trim => {
+                    %>
+                    <option value="<%= trim %>">
+                        <%= trim %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div>
+    
+    <!-- Year Dropdown -->
+    <!-- <div class="filter-group">
+            <select id="filter-year" class="filter-input">
+                <option value="">All Years</option>
+                <% const years=[...new Set(trims.map(i=> i.year).filter(Boolean))].sort((a, b) => b - a);
+                    years.forEach(year => {
+                    %>
+                    <option value="<%= year %>">
+                        <%= year %>
+                    </option>
+                    <% }) %>
+            </select>
+        </div> -->
+    <script>
+        // const searchInput = document.getElementById('filter-search');
+        const modelSelect = document.getElementById('filter-model');
+        const trimSelect = document.getElementById('filter-trim');
+        const yearSelect = document.getElementById('filter-year');
+
+        const cardWrappers = document.querySelectorAll('.item-card-wrapper');
+        const noResultsMsg = document.getElementById('no-results-msg');
+
+        function filterItems() {
+            // const query = searchInput.value.toLowerCase().trim();
+            const selectedModel = modelSelect.value;
+            const selectedTrim = trimSelect.value;
+            const selectedYear = yearSelect.value;
+
+            let matchCount = 0;
+
+            cardWrappers.forEach(card => {
+                // const keyword = card.getAttribute('data-keyword');
+                const model = card.getAttribute('data-model');
+                const trim = card.getAttribute('data-trim');
+                const year = card.getAttribute('data-year');
+
+                // Match conditions
+                // const matchesSearch = keyword.includes(query);
+                const matchesModel = !selectedModel || model === selectedModel;
+                const matchesTrim = !selectedTrim || trim === selectedTrim;
+                const matchesYear = !selectedYear || year === selectedYear;
+
+                if (/* matchesSearch && */ matchesModel && matchesTrim && matchesYear) {
+                    card.style.display = 'block';
+                    matchCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResultsMsg.style.display = matchCount === 0 ? 'block' : 'none';
+        }
+
+        // Attach listeners to all filter inputs
+        // searchInput.addEventListener('input', filterItems);
+        modelSelect.addEventListener('change', filterItems);
+        trimSelect.addEventListener('change', filterItems);
+        yearSelect.addEventListener('change', filterItems);
+    </script>
+</div>

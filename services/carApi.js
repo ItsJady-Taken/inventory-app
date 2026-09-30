@@ -55,6 +55,12 @@ const carApiService = {
         const headers = await this.getAuthHeaders();
         const response = await axios.get(`${CARAPI_BASE_URL}/trims/v2/?make=${make}`, { headers });
         return response.data;
+    },
+
+    async getTrimSearchDetails(make, model, trim) {
+        const headers = await this.getAuthHeaders();
+        const response = await axios.get(`${CARAPI_BASE_URL}/trims/v2/?make=${make}&model=${model}&trim=${trim}`, { headers });
+        return response.data;
     }
 };
 

@@ -25,60 +25,66 @@
     
             <!-- Search Bar Partial or Integrated Form -->
             <div class="search-container">
-                <form action="/items/search" method="GET" class="search-form">
-                    <input type="text" name="query" placeholder="Search by make, model, or year..." class="search-input"
-                        value="<%= locals.searchQuery || '' %>" required>
-                    <button type="submit" class="search-btn">
+                <div class="search-form">
+                    <input type="text" id="live-search-input" placeholder="Search by make, model, or year..." class="search-input"
+                        autocomplete="off">
+                    <!-- Changed to a span/button that doesn't submit a form -->
+                    <button type="button" class="search-btn">
                         <span>Search</span>
                     </button>
-                </form>
+                </div>
             </div>
         </div>
+       
+        <%- include('partials/modelList', { trims: trims }) %>
     
         <!-- Items Grid Section -->
         <div class="items-grid">
             <% if (locals.trims && trims.length> 0) { %>
                 <% trims.forEach(trim=> { %>
                     <!-- Clickable Card Wrapper (Links to detail page) -->
-                    <a href="/items/" class="item-card-link">
-                        <div class="item-card">
-    
-                            <!-- Item Image -->
-                            <% if (trim.image_url) { %>
-                                <img src="" alt="" class="item-image">
-                                <% } else { %>
-                                    <div class="item-image-placeholder">No Image Available</div>
-                                    <% } %>
-    
-                                        <!-- Item Info -->
-                                        <div class="item-info">
-                                            <h3 class="item-name">
-                                                <%= trim.make %> <%= trim.model %> <%= trim.year %>
-                                            </h3>
-                                            <p class="item-desc">
-                                                <%= trim.description ? trim.description.substring(0, 80) + '...'
-                                                    : 'No description provided.' %>
-                                            </p>
-    
-                                            <!-- Action Footer Inside Card -->
-                                            <div class="card-footer">
-                                                <span class="item-badge">
-                                                    <%= trim.category_name || 'Unassigned' %>
-                                                </span>
-    
-                                                <!-- Second Button: Add/Assign to Category (Stops card click propagation) -->
-                                                <form action="/items" method="POST"
-                                                    onclick="event.stopPropagation();">
-                                                    <button type="submit" class="card-action-btn"
-                                                        title="Assign or change category">
-                                                        + Category
-                                                    </button>
-                                                </form>
+                    <div class="item-card-wrapper" data-name="<%= trim.model.toLowerCase() %>"
+                        data-desc="<%= (trim.description || '').toLowerCase() %>">
+                        <a href="/items/" class="item-card-link">
+                            <div class="item-card">
+        
+                                <!-- Item Image -->
+                                <% if (trim.image_url) { %>
+                                    <img src="" alt="" class="item-image">
+                                    <% } else { %>
+                                        <div class="item-image-placeholder">No Image Available</div>
+                                        <% } %>
+        
+                                            <!-- Item Info -->
+                                            <div class="item-info">
+                                                <h3 class="item-name">
+                                                    <%= trim.make %> <%= trim.model %> <%= trim.year %>
+                                                </h3>
+                                                <p class="item-desc">
+                                                    <%= trim.description ? trim.description.substring(0, 80) + '...'
+                                                        : 'No description provided.' %>
+                                                </p>
+        
+                                                <!-- Action Footer Inside Card -->
+                                                <div class="card-footer">
+                                                    <span class="item-badge">
+                                                        <%= trim.category_name || 'Unassigned' %>
+                                                    </span>
+        
+                                                    <!-- Second Button: Add/Assign to Category (Stops card click propagation) -->
+                                                    <form action="/items" method="POST"
+                                                        onclick="event.stopPropagation();">
+                                                        <button type="submit" class="card-action-btn"
+                                                            title="Assign or change category">
+                                                            + Category
+                                                        </button>
+                                                    </form>
+                                                </div>
                                             </div>
-                                        </div>
-    
-                        </div>
-                    </a>
+        
+                            </div>
+                        </a>
+                    </div>
                     <% }) %>
                         <% } else { %>
                             <div class="no-items-container">
@@ -86,6 +92,37 @@
                             </div>
                         <% } %>
         </div>
+
+        <script>
+            const searchInput = document.getElementById('live-search-input');
+            const cardWrappers = document.querySelectorAll('.item-card-wrapper');
+            const noResultsMsg = document.getElementById('no-results-msg');
+
+            searchInput.addEventListener('input', (e) => {
+                const query = e.target.value.toLowerCase().trim();
+                let matchCount = 0;
+
+                cardWrappers.forEach(card => {
+                    const name = card.getAttribute('data-name');
+                    const desc = card.getAttribute('data-desc');
+
+                    // Check if name or description includes the search query
+                    if (name.includes(query) || desc.includes(query)) {
+                        card.style.display = 'block'; // Show matching card
+                        matchCount++;
+                    } else {
+                        card.style.display = 'none'; // Hide non-matching card
+                    }
+                });
+
+                // Show or hide the "No results found" message
+                if (matchCount === 0) {
+                    noResultsMsg.style.display = 'block';
+                } else {
+                    noResultsMsg.style.display = 'none';
+                }
+            });
+        </script>
     
     </div>
    
