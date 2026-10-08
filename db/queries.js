@@ -7,7 +7,10 @@ async function getAllCategories() {
 }
 
 async function createCategory(name) {
-  const newCategory = await pool.query("INSERT INTO categories (name) VALUES ($1) RETURNING *", [name]);
+  const newCategory = await pool.query(
+    "INSERT INTO categories (name) VALUES ($1) RETURNING *",
+    [name],
+  );
   return newCategory.rows[0];
 }
 
@@ -28,7 +31,7 @@ async function getAllItems() {
 async function insertItem(name, brand, price, category_id) {
   await pool.query(
     "INSERT INTO items (name, brand, price, category_id) VALUES ($1, $2, $3, $4)",
-    [name, brand, price, category_id]
+    [name, brand, price, category_id],
   );
 }
 
@@ -36,7 +39,7 @@ async function insertItem(name, brand, price, category_id) {
 async function getItemsByCategory(categoryId) {
   const { rows } = await pool.query(
     "SELECT * FROM items WHERE category_id = $1",
-    [categoryId]
+    [categoryId],
   );
   return rows;
 }
@@ -46,17 +49,20 @@ async function deleteItem(id) {
 }
 
 async function updateItem(id, name, brand, price, category_id) {
-  await pool.query("UPDATE items SET name = $1, category_id = $2 WHERE id = $3", [name, category_id, id]);
+  await pool.query(
+    "UPDATE items SET name = $1, category_id = $2 WHERE id = $3",
+    [name, category_id, id],
+  );
 }
 
 module.exports = {
-    getAllCategories,
-    createCategory,
-    deleteCategory,
-    updateCategory,
+  getAllCategories,
+  createCategory,
+  deleteCategory,
+  updateCategory,
   getItemsByCategory,
   getAllItems,
   insertItem,
   deleteItem,
-  updateItem
+  updateItem,
 };

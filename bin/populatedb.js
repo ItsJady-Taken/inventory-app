@@ -19,7 +19,7 @@ CREATE TABLE IF NOT EXISTS items (
 async function main() {
   console.log("seeding...");
   const client = new Client({
-    connectionString: "postgresql://david:bang@localhost:5432/inventory_db",
+    connectionString: "postgresql://jady:David2004@localhost:5432/inventory_db",
   });
   await client.connect();
   await client.query(SQL);
