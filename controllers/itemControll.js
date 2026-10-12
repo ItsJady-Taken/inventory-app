@@ -22,7 +22,7 @@ exports.getItemCreate = async (req, res) => {
         const modelData = await CarApiService.getModels(brand); // Fetch car makes from the CarAPI
         const models = modelData.data.map(item => item.name); // Extract the names of the car makes
         const trimsData = await CarApiService.getTrims(brand); // Fetch trims for the first model
-
+        console.log("Trims Data:", trimsData.data); // Log the trims data to the console for debugging
         res.render("itemList", { categoryId: categoryId, categories: categories, brand: brand, models: models, trims: trimsData.data });
     } catch (error) {
         res.status(500).json({ error: 'Failed to fetch items' });

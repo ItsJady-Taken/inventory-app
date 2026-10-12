@@ -1,6 +1,7 @@
 <!-- Model Dropdown -->
 <div class="filter-group">
-    <select id="filter-model" class="filter-input">
+        <label for="filter-model" class="filter-label">Filter by Model:</label>
+        <select id="filter-model" class="filter-input">
         <option value="">All Models</option>
         <% models.forEach(model => {
             %>
@@ -9,6 +10,8 @@
             </option>
             <% }) %>
     </select>
+    
+    
     <!-- Trim Dropdown -->
      <div class="filter-group">
             <select id="filter-trim" class="filter-input">
@@ -16,7 +19,7 @@
                 <% trims.forEach(trim => {
                     %>
                     <option value="<%= trim %>">
-                        <%= trim %>
+                        <%= trim.trim %>
                     </option>
                     <% }) %>
             </select>
