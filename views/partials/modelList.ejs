@@ -1,30 +1,27 @@
 <!-- Model Dropdown -->
 <div class="filter-group">
+    <form id="filter-form" action="/items" method="POST">
+         <input type="hidden" name="selectedModel" id="selectedModelInput">
         <label for="filter-model" class="filter-label">Filter by Model:</label>
         <select id="filter-model" class="filter-input">
-        <option value="">All Models</option>
-        <% models.forEach(model => {
-            %>
-            <option value="<%= model.toLowerCase() %>">
-                <%= model %>
+            <option value="" disabled selected>All Models</option>
+            <% models.forEach(model => {
+                %>
+                <option value="<%= model.toLowerCase() %>">
+                    <%= model %>
             </option>
             <% }) %>
-    </select>
-    
+        </select>
     
     <!-- Trim Dropdown -->
-     <div class="filter-group">
+    <label for="filter-trim" class="filter-label">Filter by Trim:</label>
+    <div class="filter-group">
             <select id="filter-trim" class="filter-input">
-                <option value="">All Trims</option>
-                <% trims.forEach(trim => {
-                    %>
-                    <option value="<%= trim %>">
-                        <%= trim.trim %>
-                    </option>
-                    <% }) %>
+                <option value="" disabled selected>All Trims</option>
             </select>
         </div>
-    
+       <input type="submit" value="Apply Filters" class="filter-submit-btn">
+    </form>
     <!-- Year Dropdown -->
     <!-- <div class="filter-group">
             <select id="filter-year" class="filter-input">
@@ -39,49 +36,20 @@
             </select>
         </div> -->
     <script>
-        // const searchInput = document.getElementById('filter-search');
-        const modelSelect = document.getElementById('filter-model');
-        const trimSelect = document.getElementById('filter-trim');
-        const yearSelect = document.getElementById('filter-year');
 
-        const cardWrappers = document.querySelectorAll('.item-card-wrapper');
-        const noResultsMsg = document.getElementById('no-results-msg');
+        const filterModel = document.getElementById('filter-model');
+        const filterTrim = document.getElementById('filter-trim');
 
-        function filterItems() {
-            // const query = searchInput.value.toLowerCase().trim();
-            const selectedModel = modelSelect.value;
-            const selectedTrim = trimSelect.value;
-            const selectedYear = yearSelect.value;
-
-            let matchCount = 0;
-
-            cardWrappers.forEach(card => {
-                // const keyword = card.getAttribute('data-keyword');
-                const model = card.getAttribute('data-model');
-                const trim = card.getAttribute('data-trim');
-                const year = card.getAttribute('data-year');
-
-                // Match conditions
-                // const matchesSearch = keyword.includes(query);
-                const matchesModel = !selectedModel || model === selectedModel;
-                const matchesTrim = !selectedTrim || trim === selectedTrim;
-                const matchesYear = !selectedYear || year === selectedYear;
-
-                if (/* matchesSearch && */ matchesModel && matchesTrim && matchesYear) {
-                    card.style.display = 'block';
-                    matchCount++;
-                } else {
-                    card.style.display = 'none';
-                }
+        filterModel.addEventListener('change', function() {
+            const selectedModel = this.value;
+            const filteredTrims = trims.filter(trim => trim.model.toLowerCase() === selectedModel);
+            filterTrim.innerHTML = '<option value="" disabled selected>All Trims</option>';
+            filteredTrims.forEach(trim => {
+                const option = document.createElement('option');
+                option.value = trim.trim.toLowerCase();
+                option.textContent = trim.trim;
+                filterTrim.appendChild(option);
             });
-
-            noResultsMsg.style.display = matchCount === 0 ? 'block' : 'none';
-        }
-
-        // Attach listeners to all filter inputs
-        // searchInput.addEventListener('input', filterItems);
-        modelSelect.addEventListener('change', filterItems);
-        trimSelect.addEventListener('change', filterItems);
-        yearSelect.addEventListener('change', filterItems);
+        });
     </script>
 </div>
