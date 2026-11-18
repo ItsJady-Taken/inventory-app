@@ -57,9 +57,15 @@ const carApiService = {
         return response.data;
     },
 
-    async getTrimSearchDetails(make, model, trim) {
+    async getTrimSearchDetails(make, model) {
         const headers = await this.getAuthHeaders();
-        const response = await axios.get(`${CARAPI_BASE_URL}/trims/v2/?make=${make}&model=${model}&trim=${trim}`, { headers });
+        const response = await axios.get(`${CARAPI_BASE_URL}/trims/v2/?make=${make}&model=${model}`, { headers });
+        return response.data;
+    },
+
+    async getFilteredModel(brand, model) {
+        const headers = await this.getAuthHeaders();
+        const response = await axios.get(`${CARAPI_BASE_URL}/models/v2/?make=${brand}&model=${model}`, { headers });
         return response.data;
     }
 };

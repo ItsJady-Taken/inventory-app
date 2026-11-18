@@ -1,9 +1,10 @@
 <!-- Model Dropdown -->
 <div class="filter-group">
-    <form id="filter-form" action="/items" method="POST">
-         <input type="hidden" name="selectedModel" id="selectedModelInput">
+    <form id="filter-form" action="/items/filter" method="GET">
+        <input type="hidden" name="category_id" id="category_id" value="<%= categoryId %>">
+        <input type="hidden" name="brand" id="brand" value="<%= brand %>">
         <label for="filter-model" class="filter-label">Filter by Model:</label>
-        <select id="filter-model" class="filter-input">
+        <select id="filter-model" class="filter-input" name="model">
             <option value="" disabled selected>All Models</option>
             <% models.forEach(model => {
                 %>
@@ -14,12 +15,12 @@
         </select>
     
     <!-- Trim Dropdown -->
-    <label for="filter-trim" class="filter-label">Filter by Trim:</label>
-    <div class="filter-group">
+        <!-- <label for="filter-trim" class="filter-label">Filter by Trim:</label>
+        <div class="filter-group">
             <select id="filter-trim" class="filter-input">
                 <option value="" disabled selected>All Trims</option>
             </select>
-        </div>
+        </div> -->
        <input type="submit" value="Apply Filters" class="filter-submit-btn">
     </form>
     <!-- Year Dropdown -->
@@ -37,19 +38,20 @@
         </div> -->
     <script>
 
-        const filterModel = document.getElementById('filter-model');
-        const filterTrim = document.getElementById('filter-trim');
+         const filterModel = document.getElementById('filter-model');
+        // const filterTrim = document.getElementById('filter-trim');
 
-        filterModel.addEventListener('change', function() {
-            const selectedModel = this.value;
-            const filteredTrims = trims.filter(trim => trim.model.toLowerCase() === selectedModel);
-            filterTrim.innerHTML = '<option value="" disabled selected>All Trims</option>';
-            filteredTrims.forEach(trim => {
-                const option = document.createElement('option');
-                option.value = trim.trim.toLowerCase();
-                option.textContent = trim.trim;
-                filterTrim.appendChild(option);
-            });
-        });
+        // filterModel.addEventListener('change', function() {
+        //     const selectedModel = this.value;
+        //     const filteredTrims = trims.filter(trim => trim.model.toLowerCase() === selectedModel);
+        //     filterTrim.innerHTML = '<option value="" disabled selected>All Trims</option>';
+        //     filteredTrims.forEach(trim => {
+                
+        //         const option = document.createElement('option');
+        //         option.value = trim.trim.toLowerCase();
+        //         option.textContent = trim.trim;
+        //         filterTrim.appendChild(option);
+        //     });
+        // });
     </script>
 </div>

@@ -1,0 +1,54 @@
+<!-- Items Grid Section -->
+        <div class="items-grid">
+            <% if (locals.trims && trims.length> 0) { %>
+                <% trims.forEach(trim=> { %>
+                    <!-- Clickable Card Wrapper (Links to detail page) -->
+                    <div class="item-card-wrapper" data-name="<%= trim.model.toLowerCase() %>"
+                        data-desc="<%= (trim.description || '').toLowerCase() %>">
+                        <a href="/items/" class="item-card-link">
+                            <div class="item-card">
+        
+                                <!-- Item Image -->
+                                <% if (trim.image_url) { %>
+                                    <img src="" alt="" class="item-image">
+                                    <% } else { %>
+                                        <div class="item-image-placeholder">No Image Available</div>
+                                        <% } %>
+        
+                                            <!-- Item Info -->
+                                            <div class="item-info">
+                                                <h3 class="item-name">
+                                                    <%= trim.make %> <%= trim.model %> <%= trim.year %>
+                                                </h3>
+                                                <p class="item-desc">
+                                                    <%= trim.description ? trim.description.substring(0, 80) + '...'
+                                                        : 'No description provided.' %>
+                                                </p>
+        
+                                                <!-- Action Footer Inside Card -->
+                                                <div class="card-footer">
+                                                    <span class="item-badge">
+                                                        <%= trim.category_name || 'Unassigned' %>
+                                                    </span>
+        
+                                                    <!-- Second Button: Add/Assign to Category (Stops card click propagation) -->
+                                                    <form action="/items" method="POST"
+                                                        onclick="event.stopPropagation();">
+                                                        <button type="submit" class="card-action-btn"
+                                                            title="Assign or change category">
+                                                            + Category
+                                                        </button>
+                                                    </form>
+                                                </div>
+                                            </div>
+        
+                            </div>
+                        </a>
+                    </div>
+                    <% }) %>
+                        <% } else { %>
+                            <div class="no-items-container">
+                                <p class="no-items-msg">No vehicles found in the inventory.</p>
+                            </div>
+                        <% } %>
+        </div>
