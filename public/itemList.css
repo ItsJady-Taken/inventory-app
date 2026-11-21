@@ -159,16 +159,56 @@
 /* --- Filter Toolbar --- */
 .filter-toolbar {
     display: flex;
+    justify-content: center;
+    width: 100%;
+    max-width: 960px;
+    margin: 1.5rem auto;
+    padding: 0 1rem;
+    box-sizing: border-box;
+}
+
+.filter-form-row {
+    display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    align-items: flex-end;
+    gap: 14px;
     width: 100%;
-    max-width: 900px;
-    margin-top: 1rem;
+    /* background: rgba(15, 23, 42, 0.55); */
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+}
+
+/* Each filter control */
+.filter-item {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1 1 180px;
+    max-width: 240px;
+    min-width: 150px;
+}
+
+.filter-label {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.78rem;
+    font-weight: 500;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: #94a3b8;
+}
+.filter-label-spacer {
+    visibility: hidden;
 }
 
 .filter-group {
-    flex: 1;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+
     min-width: 180px;
 }
 
@@ -205,4 +245,52 @@ select.filter-input {
 select.filter-input option {
     background-color: #1e293b;
     color: #f1faee;
+}
+.filter-action {
+    flex: 0 0 auto;
+    max-width: none;
+    min-width: auto;
+}
+
+.filter-submit-btn {
+    height: 44px;
+    padding: 0 22px;
+    background-color: #e63946;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.95rem;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: background-color 0.2s ease, transform 0.15s ease;
+}
+
+.filter-submit-btn:hover {
+    background-color: #d90429;
+}
+
+.filter-submit-btn:active {
+    transform: scale(0.98);
+}
+
+/* Stack cleanly on small mobile screens */
+@media (max-width: 600px) {
+    .filter-form-row {
+        flex-direction: column;
+        align-items: stretch;
+        padding: 14px;
+    }
+
+    .filter-item,
+    .filter-action {
+        max-width: 100%;
+        width: 100%;
+    }
+
+    .filter-label-spacer {
+        display: none;
+    }
 }

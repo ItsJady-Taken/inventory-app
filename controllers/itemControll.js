@@ -56,7 +56,7 @@ exports.itemFilter = async (req, res) => {
         const filteredTrims = normalizedModel ? allTrims.filter(trim =>
         (trim.model || '').toLowerCase().includes(normalizedModel)
         ) : allTrims;
-        console.log("All Trims:", trimsData.data); // Log all trims for debugging
+        
         res.render("itemList", { categoryId: categoryId, categories: categories, brand: brand, models: models, trims: filteredTrims }); // Pass the filtered models to the view
      } catch (error) {
         res.status(500).json({ error: 'Failed to filter items' });
